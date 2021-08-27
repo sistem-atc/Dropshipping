@@ -41,6 +41,8 @@
 							</div>
 						</div>
                     </div><br/>
+
+						
                     <!-- Incluir uma Tabela para inserir varios produtos -->
                     <!-- Comparar o total inserido pela quantidade X o valor e validar no valor total informado -->
             </div>

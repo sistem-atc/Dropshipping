@@ -11,8 +11,19 @@
 						<div class="col-sm-3">
 							<div >
 							<label for="lbl-nf">Numero da NF</label>
-							<input id="nf" type="number" class="form-control @error('nf') is-invalid @enderror" name="nf" value="{{ old('nf') }}" required placeholder="Informe o numero da NF" autofocus/>
-								@error('name')
+							<input id="nf" type="number" class="form-control @error('nf') is-invalid @enderror" name="nf" value="{{ old('nf') }}" required placeholder="Numero da NF" autofocus/>
+								@error('nf')
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+								@enderror
+							</div>
+						</div>	
+						<div class="col-sm-1">
+							<div >
+							<label for="lbl-serie">Série</label>
+							<input id="serie" type="number" class="form-control @error('serie') is-invalid @enderror" name="serie" value="{{ old('serie') }}" required placeholder="Série" autofocus/>
+								@error('serie')
 									<span class="invalid-feedback" role="alert">
 										<strong>{{ $message }}</strong>
 									</span>
@@ -30,10 +41,21 @@
 								@enderror
 							</div>
 						</div>	
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
+							<div class="form-group">
+							<label for="lbl-cfop">CFOP</label>
+							<input id="cfop" type="number" class="form-control @error('cfop') is-invalid @enderror" name="cfop" value="{{ old('cfop') }}" min="1" step="any" required placeholder="CFOP"/>
+								@error('cfop')
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+								@enderror
+							</div>
+						</div>
+						<div class="col-sm-2">
 							<div class="form-group">
 							<label for="lbl-tax">Impostos</label>
-							<input id="tax" type="number" class="form-control @error('tax') is-invalid @enderror" name="tax" value="{{ old('tax') }}" min="1" step="any" required placeholder="Informe os Impostos"/>
+							<input id="tax" type="number" class="form-control @error('tax') is-invalid @enderror" name="tax" value="{{ old('tax') }}" min="1" step="any" required placeholder="Impostos"/>
 								@error('tax')
 									<span class="invalid-feedback" role="alert">
 										<strong>{{ $message }}</strong>
@@ -41,11 +63,79 @@
 								@enderror
 							</div>
 						</div>
+                    </div>
+					<div class = "row justify-content-center">
+						<div class="col-sm-5">
+							<div >
+							<label for="lbl-namecompany">Nome do Fornecedor</label>
+							<input id="namecompany" type="number" class="form-control @error('namecompany') is-invalid @enderror" name="namecompany" value="{{ old('namecompany') }}" required placeholder="Informe o nome do Fornecedor" autofocus/>
+								@error('namecompany')
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+								@enderror
+							</div>
+						</div>	
+						<div class="col-sm-4">
+							<div >
+							<label for="lbl-cpfcnpj">CNPJ / CPF</label>
+							<input id="cpfcnpj" type="number" class="form-control @error('cpfcnpj') is-invalid @enderror" name="cpfcnpj" value="{{ old('cpfcnpj') }}" required placeholder="CPF / CNPJ" autofocus/>
+								@error('cpfcnpj')
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+								@enderror
+							</div>
+						</div>	
+						<div class="col-sm-2">
+							<div >
+							<label for="lbl-ie">IE</label>
+							<input id="ie" type="number" class="form-control @error('ie') is-invalid @enderror" name="ie" min="1" step="any" required placeholder="Inserir Incrição Estadual"/>
+								@error('ie')
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+								@enderror
+							</div>
+						</div>	
                     </div><br/>
-                    <!-- Incluir uma Tabela para inserir varios produtos -->
-                    <!-- Comparar o total inserido pela quantidade X o valor e validar no valor total informado -->
+                    <div class="container row justify-content-center" style="padding-top: 20px;">
+						<div class="row justify-content-center">
+							<h3>Lista de Produtos</h3>
+							<table class="table" id="products-table">
+								<thead>
+									<tr>
+										<th scope="col">Cod. Produto</th>
+										<th scope="col">Descrição do Produto</th>
+										<th scope="col">Valor Un.</th>
+										<th scope="col">Quant.</th>
+										<th scope="col">Valor Total</th>
+										<th scope="col">Opções</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td scope="row">&nbsp;</td>
+										<th>&nbsp;</th>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+										<th>&nbsp;</th>
+										<th><button class="btn btn-primary" type="button" onclick="remove(this)">Remover</button></th>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<th colspan="5" sytle="text-align: left;">
+											<button onclick="AddTableRow()" class="btn btn-primary" type="button">Adicionar Produto</button>
+										</th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+				</div>		
             </div>
-        </div>
+        </div></br>
         <div class="col-md-11">
             <div class = "row justify-content-center">
 			    <div class="form-group">

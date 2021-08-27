@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ url ('assets/css/templatemo-klassy-cafe.css')}}">
     <link rel="stylesheet" href="{{ url ('assets/css/owl-carousel.css')}}">
     <link rel="stylesheet" href="{{ url ('assets/css/lightbox.css')}}">
+    <script src="{{ url ('assets/js/jQuery.js')}}"></script>
+    <script type="text/javascript" src="{{ url ('assets/js/functions.js')}}"></script>
   </head>
   <body>
       <header class="header-area header-sticky">
