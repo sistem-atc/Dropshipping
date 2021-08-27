@@ -62,3 +62,11 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Primeiro uso
+
+1- Criar um banco de dados e configurar o arquivo .env
+2- Rodar as Migrations
+3- Rodar as sedds
+4- Login e senha de Adm para primeiro uso nas sedds.
