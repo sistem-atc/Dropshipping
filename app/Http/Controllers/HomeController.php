@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Company;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
@@ -30,11 +29,6 @@ class HomeController extends Controller
     }
     public function menus(){
         return view('menus');
-    }
-    public function cadastroA()
-    {   
-        $empresas = Company::all();
-        return view('cadastros.cadastroA',['empresas' => $empresas]);
     }
     public function cadastroC()
     {
@@ -76,45 +70,4 @@ class HomeController extends Controller
     {
         return view('auth.register');
     } 
-    public function store(Request $request){
-        
-        User::create([
-            
-            'company' => $request->company,
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'cpf' => $request->cpf,
-            'phone' => $request->phone,
-            'cep' => $request->cep,
-            'address' => $request->address,
-            'number' => $request->number,
-            'city' => $request->city,
-            'uf' => $request->uf,
-            'ative' => $request->ative,
-            'paper' => $request->paper,
-        ]);
-
-        return view('cadastros.cadastroA');
-    } 
-
-    public function companies(Request $request){
-        
-        Company::create([
-            
-            'name' => $request->name,
-            'cnpj' => $request->cnpj,
-            'phone' => $request->phone,
-            'cep' => $request->cep,
-            'address' => $request->address,
-            'number' => $request->number,
-            'city' => $request->city,
-            'uf' => $request->uf,
-            'appid' => $request->appid,
-            'secretkey' => $request->secretkey,
-        ]);
-	
-        return redirect('/');
-    }
-
 }

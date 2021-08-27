@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CadastroAController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,6 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/menus', [HomeController::class, 'menus'])->name('menus');
-Route::get('/cadastroAdministradores', [HomeController::class, 'cadastroA'])->name('cadastroA');
 Route::get('/cadastroProdutos', [HomeController::class, 'cadastroP'])->name('cadastroP');
 Route::get('/cadastroSellers', [HomeController::class, 'cadastroS'])->name('cadastroS');
 Route::get('/relatorioVendas', [HomeController::class, 'relatov'])->name('relatov');
@@ -29,5 +30,7 @@ Route::get('/mensagensSellers', [HomeController::class, 'atendimentosSellers'])-
 Route::get('/mensagensMercadoLivre', [HomeController::class, 'atendimentosML'])->name('atendimentosML');
 Route::get('/register', [HomeController::class, 'register'])->name('register');
 
-Route::post('/cadastroAdministradores', [HomeController::class, 'store'])->name('cadastraAdmin');
-Route::post('/cadastroEmpresas', [HomeController::class, 'companies'])->name('cadastroEmpresas');
+Route::post('/cadastroEmpresas', [CompanyController::class, 'companies'])->name('cadastroEmpresas');
+
+Route::post('/cadastroAdministradores', [CadastroAController::class, 'store'])->name('cadastraAdmin');
+Route::get('/cadastroAdministradores', [CadastroAController::class, 'cadastroA'])->name('cadastroA');
