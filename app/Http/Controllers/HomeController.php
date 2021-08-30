@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use App\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -30,49 +30,10 @@ class HomeController extends Controller
     }
     public function index()
     {   
-        return view('home');
+        $roles = Role::all();
+        return view('home', ['roles' => $roles]);
     }
     public function menus(){
         return view('menus');
-    }
-    public function cadastroC()
-    {
-        return view('cadastros.cadastroC');
-    }
-    public function cadastroP()
-    {
-        return view('cadastros.cadastroP');
-    }
-    public function cadastroS()
-    {
-        return view('cadastros.cadastroS');
-    }
-    public function relatov()
-    {
-        return view('relatorios.relatov');
-    }
-    public function atendimentosSellers()
-    {
-        return view('atendimentos.mensagensSellers');
-    }
-    public function atendimentosML()
-    {
-        return view('atendimentos.mensagensML');
-    }    
-    public function pedidos()
-    {
-        return view('pedidos.pedidos');
-    }
-    public function anuncios()
-    {
-        return view('anuncios.anuncios');
-    }
-    public function estoque()
-    {
-        return view('estoque.estoque');
-    } 
-    public function register()
-    {
-        return view('auth.register');
     }
 }

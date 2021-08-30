@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class EstoqueController extends Controller
 {
-    //
+    public function estoque()
+    {
+        return view('estoque.estoque');
+    } 
 }

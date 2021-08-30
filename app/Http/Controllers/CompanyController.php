@@ -25,5 +25,10 @@ class CompanyController extends Controller
 	
         return redirect('/');
     }
+    
+    public function register()
+    {
+        return view('auth.register');
+    }
 
 }

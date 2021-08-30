@@ -1,10 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AnunciosController;
+use App\Http\Controllers\AtedimentoController;
+use App\Http\Controllers\CadastroController;
 use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\CadastroAController;
-use App\Http\Controllers\RoleController;
+use App\Http\Controllers\EstoqueController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PedidosController;
+use App\Http\Controllers\RelatorioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,23 +23,28 @@ use App\Http\Controllers\RoleController;
 
 Auth::routes();
 
+Route::get('/anuncios', [AnunciosController::class, 'store'])->name('anuncios');
+Route::get('/mensagensSellers', [AtedimentoController::class, 'atendimentosSellers'])->name('atendimentosSellers');
+Route::get('/mensagensMercadoLivre', [AtedimentoController::class, 'atendimentosML'])->name('atendimentosML');
+
+Route::post('/cadastroAdministradores', [CadastroController::class, 'storeA'])->name('cadastraAdmin');
+Route::get('/cadastroAdministradores', [CadastroController::class, 'cadastroA'])->name('cadastroA');
+
+Route::post('/cadastroSellers', [CadastroController::class, 'storeS'])->name('cadastraSeller');
+Route::get('/cadastroSellers', [CadastroController::class, 'cadastroS'])->name('cadastroS');
+
+Route::post('/roles', [CadastroController::class, 'storeR'])->name('cadastraRoles');
+Route::get('/roles', [CadastroController::class, 'roles'])->name('roles');
+
+Route::get('/cadastroProdutos', [CadastroController::class, 'cadastroP'])->name('cadastroP');
+Route::get('/register', [CompanyController::class, 'register'])->name('register');
+Route::post('/cadastroEmpresas', [CompanyController::class, 'companies'])->name('cadastroEmpresas');
+Route::get('/estoque', [EstoqueController::class, 'estoque'])->name('estoque');
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/menus', [HomeController::class, 'menus'])->name('menus');
-Route::get('/cadastroProdutos', [HomeController::class, 'cadastroP'])->name('cadastroP');
-Route::get('/cadastroSellers', [HomeController::class, 'cadastroS'])->name('cadastroS');
-Route::get('/relatorioVendas', [HomeController::class, 'relatov'])->name('relatov');
-Route::get('/pedidos', [HomeController::class, 'pedidos'])->name('pedidos');
-Route::get('/estoque', [HomeController::class, 'estoque'])->name('estoque');
-Route::get('/anuncios', [HomeController::class, 'anuncios'])->name('anuncios');
-Route::get('/mensagensSellers', [HomeController::class, 'atendimentosSellers'])->name('atendimentosSellers');
-Route::get('/mensagensMercadoLivre', [HomeController::class, 'atendimentosML'])->name('atendimentosML');
-Route::get('/register', [HomeController::class, 'register'])->name('register');
+Route::get('/pedidos', [PedidosController::class, 'pedidos'])->name('pedidos');
+Route::get('/relatorioVendas', [RelatorioController::class, 'relatovendas'])->name('relatoriovendas');
 
-Route::post('/roles', [RoleController::class, 'store'])->name('cadastraRoles');
-Route::get('/roles', [RoleController::class, 'roles'])->name('roles');
 
-Route::post('/cadastroEmpresas', [CompanyController::class, 'companies'])->name('cadastroEmpresas');
 
-Route::post('/cadastroAdministradores', [CadastroAController::class, 'store'])->name('cadastraAdmin');
-Route::get('/cadastroAdministradores', [CadastroAController::class, 'cadastroA'])->name('cadastroA');

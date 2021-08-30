@@ -24,43 +24,55 @@
                         <img src="{{ url ('assets/images/img-menu.png')}}" align="klassy cafe html template">
                       </a>
                       <ul class="nav">
-                            <!-- style="display:none;" Ocultar a Tag, incluir regra de validação pelo login -->
-                            <li class="scroll-to-section"><a href="/" class="active">Dashboard</a></li>
-                            <li class="scroll-to-section"><a href="/estoque">Estoque</a></li>
-                            <li class="scroll-to-section"><a href="/anuncios">Anuncios</a></li>
-                            <li class="scroll-to-section"><a href="/pedidos">Pedidos</a></li>   
+                        <!-- style="display:none;" Ocultar a Tag, incluir regra de validação pelo login -->
+                        <li class="scroll-to-section"><a href="/" class="active">Menus</a></li>
+                        <li class="submenu">
+                          <a href="javascript:;">Estoque</a>
+                          <ul>
+                            <li><a href="{{ route('estoque') }}">Entrada de Estoque</a></li>
+                          </ul>
+                        </li>  
+                        <li class="submenu">
+                          <a href="javascript:;">Pedidos</a>
+                          <ul>
+                            <li><a href="{{ route('pedidos') }}">Pedidos Mercado Livre</a></li>
+                          </ul>
+                        </li> 
+                        <li class="submenu">
+                          <a href="javascript:;">Anuncios</a>
+                          <ul>
+                            <li><a href="{{ route('anuncios') }}">Anuncios Mercado Livre</a></li>
+                          </ul>
+                        </li>
                         <li class="submenu">
                           <a href="javascript:;">Atendimentos</a>
                           <ul>
-                            <li><a href="/mensagensSellers">Mensagens Sellers</a></li>
-                            <li><a href="/mensagensMercadoLivre">Mensagens Mercado Livre</a></li>
+                            <li><a href="{{ route('atendimentosSellers') }}">Mensagens Sellers</a></li>
+                            <li><a href="{{ route('atendimentosML') }}">Mensagens Mercado Livre</a></li>
                           </ul>
                         </li>     	
                         <li class="submenu">
                           <a href="javascript:;">Relatórios</a>
                           <ul>
-                            <li><a href="/relatorioVendas">Controle de Vendas</a></li>
+                            <li><a href="{{ route('relatoriovendas') }}">Controle de Vendas</a></li>
                           </ul>
                         </li>
                         <li class="submenu">
                           <a href="javascript:;">Cadastros</a>
                           <ul>
-                            <li><a href="/cadastroAdministradores">Administradores</a></li>
-                            <li><a href="/cadastroSellers">Sellers</a></li>
-                            <li><a href="/roles">Regras de Acessos</a></li>
-                            <li><a href="/cadastroProdutos">Produtos</a></li>
+                            <li><a href="{{ route('cadastroA') }}">Administradores</a></li>
+                            <li><a href="{{ route('cadastroS') }}">Sellers</a></li>
+                            <li><a href="{{ route('roles') }}">Regras de Acessos</a></li>
+                            <li><a href="{{ route('cadastroP') }}">Produtos</a></li>
                           </ul>
                         </li>
                           <li class="scroll-to-section">
-                            <a class="scroll-to-section" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                            <a class="scroll-to-section" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logoff') }}</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                               @csrf
                             </form>
                           </li> 
                       </ul>        
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>
                     </nav>
                 </div>
             </div>

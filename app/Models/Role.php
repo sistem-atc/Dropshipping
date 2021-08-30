@@ -10,8 +10,6 @@ class Role extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'menus',
-        'home',
         'anuncios',
         'mensagensML',
         'mensagensSellers',

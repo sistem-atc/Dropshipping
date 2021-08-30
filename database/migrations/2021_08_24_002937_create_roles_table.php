@@ -16,8 +16,6 @@ class CreateRolesTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('menus');
-            $table->boolean('home');
             $table->boolean('anuncios');
             $table->boolean('mensagensML');
             $table->boolean('mensagensSellers');

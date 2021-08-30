@@ -18,19 +18,10 @@
 								@enderror
 							</div>
 						</div>
-                    	<div class="col-sm-2">
+                        <div class="col-sm-2">
 							<div>
-							    <label for="lbl-menus">Menus</label>
-                                <select id="menus" name="menus" class="form-control" value="{{ old('menus') }}" required autocomplete="ative">
-                                    <option value="true" selected>Sim</option>
-                                    <option value="false">Não</option>
-                                </select>
-							</div>
-						</div>
-                       	<div class="col-sm-2">
-							<div>
-                                <label for="lbl-home">Home</label>
-                                <select id="home" name="home" class="form-control" value="{{ old('home') }}" required autocomplete="ative">
+                                <label for="lbl-anuncios">Anuncios</label>
+                                <select id="anuncios" name="anuncios" class="form-control" value="{{ old('anuncios') }}" required autocomplete="ative">
                                     <option value="true" selected>Sim</option>
                                     <option value="false">Não</option>
                                 </select>
@@ -38,8 +29,17 @@
 						</div>
                         <div class="col-sm-2">
 							<div>
-                                <label for="lbl-anuncios">Anuncios</label>
-                                <select id="anuncios" name="anuncios" class="form-control" value="{{ old('anuncios') }}" required autocomplete="ative">
+                                <label for="lbl-roles">Criar Regras</label>
+                                <select id="roles" name="roles" class="form-control" value="{{ old('roles') }}" required autocomplete="ative">
+                                    <option value="true" selected>Sim</option>
+                                    <option value="false">Não</option>
+                                </select>
+							</div>
+						</div>
+                        <div class="col-sm-2">
+							<div>
+                                <label for="lbl-relatov">Relatorio Vendas</label>
+                                <select id="relatov" name="relatov" class="form-control" value="{{ old('relatov') }}" required autocomplete="ative">
                                     <option value="true" selected>Sim</option>
                                     <option value="false">Não</option>
                                 </select>
@@ -107,26 +107,6 @@
 							<div>
                                 <label for="lbl-cadastroS">Cadastro Sellers</label>
                                 <select id="cadastroS" name="cadastroS" class="form-control" value="{{ old('cadastroS') }}" required autocomplete="ative">
-                                    <option value="true" selected>Sim</option>
-                                    <option value="false">Não</option>
-                                </select>
-							</div>
-						</div>
-                    </div></br>
-                    <div class = "row justify-content-center">
-                        <div class="col-sm-2">
-							<div>
-                                <label for="lbl-roles">Criar Regras</label>
-                                <select id="roles" name="roles" class="form-control" value="{{ old('roles') }}" required autocomplete="ative">
-                                    <option value="true" selected>Sim</option>
-                                    <option value="false">Não</option>
-                                </select>
-							</div>
-						</div>
-                        <div class="col-sm-2">
-							<div>
-                                <label for="lbl-relatov">Relatorio Vendas</label>
-                                <select id="relatov" name="relatov" class="form-control" value="{{ old('relatov') }}" required autocomplete="ative">
                                     <option value="true" selected>Sim</option>
                                     <option value="false">Não</option>
                                 </select>

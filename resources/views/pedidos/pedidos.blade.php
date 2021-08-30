@@ -2,47 +2,33 @@
 @section('content')
 <div class="row justify-content-center">
     <form action="" method="POST" class="col-md-11 row justify-content-center">        
-        <div class="col-md-11">
+		<div class="col-md-11">
             <div class="card">
-                <div class="card-header row justify-content-center">Entrada dos Pedidos</div><br/>
-					@csrf	
-					<div class = "row justify-content-center">
-						<div class="col-sm-3">
-							<div >
-							<label for="lbl-id_anuncio">Id do Pedido</label>
-							<input id="id_anuncio" type="text" class="form-control @error('id_anuncio') is-invalid @enderror" name="nf" placeholder="Id do Pedido"/>
-								@error('id_anuncio')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-								@enderror
-							</div>
-						</div>	
-						<div class="col-sm-3">
-							<div >
-							<label for="lbl-cod_rastreio">Codigo de Rastreio</label>
-							<input id="cod_rastreio" type="text" class="form-control @error('cod_rastreio') is-invalid @enderror" name="cod_rastreio" placeholder="Codigo de Rastreio"/>
-								@error('cod_rastreio')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-								@enderror
-							</div>
-						</div>	
-                        <div class="col-sm-3">
-							<div class="form-group">
-							<label for="lbl-id_buyer">Id do Comprador</label>
-							<input id="id_buyer" type="text" class="form-control @error('id_buyer') is-invalid @enderror" name="id_buyer" value="{{ old('tax') }}" min="1" step="any" required placeholder="Informe os Impostos"/>
-								@error('tax')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-								@enderror
-							</div>
-						</div>
-                    </div><br/>
-                    <!-- Incluir uma Tabela para inserir varios produtos -->
-                    <!-- Comparar o total inserido pela quantidade X o valor e validar no valor total informado -->
+				<div class="card-header row justify-content-center">Entrada dos Pedidos</div></br>
+                	@csrf	
+					<table class="table" id="products-table">
+						<thead>
+							<tr>
+								<th scope="col" class="col-sm-2">Cod. Produto</th>
+								<th scope="col" class="col-sm-3">Descrição do Produto</th>
+								<th scope="col" class="col-sm-2">Valor Un.</th>
+								<th scope="col" class="col-sm-2">Quant.</th>
+								<th scope="col" class="col-sm-3">Valor Total</th>
+								<th scope="col">Opções</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="col"></th>
+								<th scope="col"></th>
+								<th scope="col"></th>
+								<th scope="col"></th>
+								<th scope="col"></th>
+								<th><button class="btn btn-primary" type="button" onclick="remove(this)">Detalhes</button></th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
             </div>
         </div>
         <div class="col-md-11">
