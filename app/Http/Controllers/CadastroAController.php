@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Company;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
 class CadastroAController extends Controller
 {
-    
     public function store(Request $request){
         
         User::create([
@@ -35,6 +35,7 @@ class CadastroAController extends Controller
     public function cadastroA()
     {   
         $empresas = Company::all();
-        return view('cadastros.cadastroA',['empresas' => $empresas]);
+        $roles = Role::all();
+        return view('cadastros.cadastroA',['empresas' => $empresas, 'roles' => $roles]);
     }
 }

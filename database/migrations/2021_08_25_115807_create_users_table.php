@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->string('uf');
             $table->boolean('ative');
             $table->integer('paper');
+            $table->foreign('paper')->references('id')->on('roles');
             $table->timestamps();
 
             

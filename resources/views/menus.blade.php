@@ -24,6 +24,7 @@
                         <img src="{{ url ('assets/images/img-menu.png')}}" align="klassy cafe html template">
                       </a>
                       <ul class="nav">
+                            <!-- style="display:none;" Ocultar a Tag, incluir regra de validação pelo login -->
                             <li class="scroll-to-section"><a href="/" class="active">Dashboard</a></li>
                             <li class="scroll-to-section"><a href="/estoque">Estoque</a></li>
                             <li class="scroll-to-section"><a href="/anuncios">Anuncios</a></li>
@@ -39,8 +40,6 @@
                           <a href="javascript:;">Relatórios</a>
                           <ul>
                             <li><a href="/relatorioVendas">Controle de Vendas</a></li>
-                            <!-- <li><a href="#">Drop Down Page 2</a></li>
-                            <li><a href="#">Drop Down Page 3</a></li> -->
                           </ul>
                         </li>
                         <li class="submenu">
@@ -48,6 +47,7 @@
                           <ul>
                             <li><a href="/cadastroAdministradores">Administradores</a></li>
                             <li><a href="/cadastroSellers">Sellers</a></li>
+                            <li><a href="/roles">Regras de Acessos</a></li>
                             <li><a href="/cadastroProdutos">Produtos</a></li>
                           </ul>
                         </li>

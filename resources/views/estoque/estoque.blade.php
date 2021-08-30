@@ -100,26 +100,25 @@
 						</div>	
                     </div><br/>
                     <div class="container row justify-content-center" style="padding-top: 20px;">
-						<div class="row justify-content-center">
-							<h3>Lista de Produtos</h3>
+						<div class="card-header row justify-content-center">Lista de Produtos</div>
 							<table class="table" id="products-table">
 								<thead>
 									<tr>
-										<th scope="col">Cod. Produto</th>
-										<th scope="col">Descrição do Produto</th>
-										<th scope="col">Valor Un.</th>
-										<th scope="col">Quant.</th>
-										<th scope="col">Valor Total</th>
+										<th scope="col" class="col-sm-2">Cod. Produto</th>
+										<th scope="col" class="col-sm-3">Descrição do Produto</th>
+										<th scope="col" class="col-sm-2">Valor Un.</th>
+										<th scope="col" class="col-sm-2">Quant.</th>
+										<th scope="col" class="col-sm-3">Valor Total</th>
 										<th scope="col">Opções</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td scope="row">&nbsp;</td>
-										<th>&nbsp;</th>
-										<td>&nbsp;</td>
-										<td>&nbsp;</td>
-										<th>&nbsp;</th>
+										<td scope="row"><input type="text" class="col-sm-10"></input></td>
+										<th class="col-sm-4"></th>
+										<td><input type="text" class="col-sm-10"></td>
+										<td><input type="text" class="col-sm-10"></td>
+										<th class="col-sm-3"></th>
 										<th><button class="btn btn-primary" type="button" onclick="remove(this)">Remover</button></th>
 									</tr>
 								</tbody>

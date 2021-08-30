@@ -33,9 +33,9 @@
 							<div>
 							<label for="lbl-paper">Tipo</label>
 							<select  id="paper" name="paper" class="form-control" name="paper" value="{{ old('paper') }}" required autocomplete="paper" placeholder="Tipo">
-								<option value="1" selected>Administrador</option>
-								<option value="2">Financeiro</option>
-								<option value="3">Ajudante</option>
+								@foreach ($roles as $role)	
+									<option value="{{ $role->id}}" selected>{{ $role->name}}</option>
+								@endforeach		
 							</select >
 							</div>
 						</div>
@@ -152,8 +152,8 @@
 					<div class = "row justify-content-center">
 						<div class="form-group">
 							<button class="btn  btn-primary" type="submit">Salvar</button>
-							<a class="btn btn-primary">Consultar</a>
-							<a class="btn btn-primary aw-btn-link-danger" onclick="excluir()">Excluir Cadastro?</a>
+							<a class="btn btn-secondary">Consultar</a>
+							<a class="btn btn-danger aw-btn-link-danger" onclick="excluir()">Excluir Cadastro?</a>
 						</div>
 						<script>
 							function excluir() {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Role;
 
 class HomeController extends Controller
 {
@@ -23,8 +24,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function logout()
     {
+        return view('home');
+    }
+    public function index()
+    {   
         return view('home');
     }
     public function menus(){
@@ -69,5 +74,5 @@ class HomeController extends Controller
     public function register()
     {
         return view('auth.register');
-    } 
+    }
 }

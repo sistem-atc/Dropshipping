@@ -17,7 +17,10 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->decimal('value_sale', 12,2);
-            $table->decimal('measures', 12,2);
+            $table->integer('length');
+            $table->integer('width');
+            $table->integer('height');
+            $table->integer('weight');
             $table->integer('category');
             $table->foreign('category')->references('id')->on('categorys');
             $table->decimal('tax_data', 12,2);

@@ -105,8 +105,8 @@
 				<div class = "row justify-content-center">
 					<div class="form-group">
 				        <button class="btn  btn-primary" type="submit">Salvar</button>
-				        <a class="btn btn-primary">Cancelar</a>
-				        <a class="btn  btn-primary  aw-btn-link-danger" onclick="excluir()">Excluir Cadastro?</a>
+				        <a class="btn btn-secondary">Consultar</a>
+				        <a class="btn btn-danger aw-btn-link-danger" onclick="excluir()">Excluir Cadastro?</a>
 		        	</div>
                 	<script>
 	                    function excluir() {
