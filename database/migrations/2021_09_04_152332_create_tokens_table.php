@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKeysTable extends Migration
+class CreateTokensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateKeysTable extends Migration
      */
     public function up()
     {
-        Schema::create('keys', function (Blueprint $table) {
+        Schema::create('tokens', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('id_user');
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->string('name_dp');
-            $table->string('appid');
-            $table->string('secretkey');
+            $table->integer('company');
+            $table->foreign('company')->references('id')->on('companies');
+            $table->string('access_token');
+            $table->integer('expires_in');
+            $table->integer('user_id');
+            $table->string('refresh_token');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateKeysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('keys');
+        Schema::dropIfExists('tokens');
     }
 }

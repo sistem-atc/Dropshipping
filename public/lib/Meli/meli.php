@@ -77,6 +77,7 @@ class Meli {
 
     /**
      * Executes a POST Request to authorize the application and take
+     * $client = new GuzzleHttp\Client(['base_uri' => $auth_uri]);
      * an AccessToken.
      * 
      * @param string $code

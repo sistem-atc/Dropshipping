@@ -5,10 +5,11 @@ use App\Http\Controllers\AnunciosController;
 use App\Http\Controllers\AtedimentoController;
 use App\Http\Controllers\CadastroController;
 use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\EstoqueController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\RelatorioController;
+use App\Http\Controllers\MeliController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,15 +37,21 @@ Route::get('/cadastroSellers', [CadastroController::class, 'cadastroS'])->name('
 Route::post('/roles', [CadastroController::class, 'storeR'])->name('cadastraRoles');
 Route::get('/roles', [CadastroController::class, 'roles'])->name('roles');
 
+Route::post('/cadastroProdutos', [CadastroController::class, 'storeP'])->name('cadastroProd');
 Route::get('/cadastroProdutos', [CadastroController::class, 'cadastroP'])->name('cadastroP');
+
+Route::post('/estoque', [InventoryController::class, 'store'])->name('estoqueCad');
+Route::get('/estoque', [InventoryController::class, 'estoque'])->name('estoque');
+
 Route::get('/register', [CompanyController::class, 'register'])->name('register');
 Route::post('/cadastroEmpresas', [CompanyController::class, 'companies'])->name('cadastroEmpresas');
-Route::get('/estoque', [EstoqueController::class, 'estoque'])->name('estoque');
+
+Route::get('/menus', [HomeController::class, 'menus'])->name('menus');
+
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/menus', [HomeController::class, 'menus'])->name('menus');
 Route::get('/pedidos', [PedidosController::class, 'pedidos'])->name('pedidos');
 Route::get('/relatorioVendas', [RelatorioController::class, 'relatovendas'])->name('relatoriovendas');
 
-
-
+Route::get('/prepare-to-login',[MeliController::class, 'preparetologin'])->name('prepare.login');
+Route::get('/callback', [MeliController::class, 'callback'])->name('callback');

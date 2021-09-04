@@ -14,7 +14,7 @@ class EmpresaTableSeeder extends Seeder
     public function run()
     {
         DB::table('companies')->insert([
-            'name' => 'Empresa Teste',
+            'name' => 'Empresa Sistema Master',
             'cnpj' => '00000000000000',
             'phone' => '11956482365',
             'cep' => '90001',
@@ -22,8 +22,8 @@ class EmpresaTableSeeder extends Seeder
             'number' => '666',
             'city' => 'Software',
             'uf' => 'SF',
-            'appid' => 'appidficticio65999854',
-            'secretkey' => 'chavesecretaparaauteticacao',
+            'appid' => '1635893815413634',
+            'secretkey' => '5bwCZMMgGXs303sLsZbjI2Mb9eQPrlXb',
         ]);
     }
 }

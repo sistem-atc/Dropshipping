@@ -1,17 +1,5 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <title >Cadastrar Empresa</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" type="image/png" href="{{ url ('assets/images/icons/favicon.ico')}}"/>
-        <link rel="stylesheet" type="text/css" href="{{ url ('assets/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{ url ('assets/css/font-awesome.css')}}">
-        <link rel="stylesheet" href="{{ url ('assets/css/templatemo-klassy-cafe.css')}}">
-        <link rel="stylesheet" href="{{ url ('assets/css/owl-carousel.css')}}">
-        <link rel="stylesheet" href="{{ url ('assets/css/lightbox.css')}}">
-    </head>    
-    <body>
+@extends('menus')
+@section('content')
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
@@ -104,19 +92,4 @@
                 </div>
             </div>
         </div>    
-    <script src="{{ url ('assets/js/jquery-2.1.0.min.js')}}"></script>
-    <script src="{{ url ('assets/js/popper.js')}}"></script>
-    <script src="{{ url ('assets/js/bootstrap.min.js')}}"></script>
-    <script src="{{ url ('assets/js/owl-carousel.js')}}"></script>
-    <script src="{{ url ('assets/js/accordions.js')}}"></script>
-    <script src="{{ url ('assets/js/datepicker.js')}}"></script>
-    <script src="{{ url ('assets/js/scrollreveal.min.js')}}"></script>
-    <script src="{{ url ('assets/js/waypoints.min.js')}}"></script>
-    <script src="{{ url ('assets/js/jquery.counterup.min.js')}}"></script>
-    <script src="{{ url ('assets/js/imgfix.min.js')}}"></script> 
-    <script src="{{ url ('assets/js/slick.js')}}"></script> 
-    <script src="{{ url ('assets/js/lightbox.js')}}"></script> 
-    <script src="{{ url ('assets/js/isotope.js')}}"></script> 
-    <script src="{{ url ('assets/js/custom.js')}}"></script>
-    </body>
-</html>
+@endsection

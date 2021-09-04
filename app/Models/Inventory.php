@@ -10,12 +10,16 @@ class Inventory extends Model
     use HasFactory;
     protected $fillable = [
         'nf',
-        'products',
-        'qtd',
-        'cep',
-        'unitary_value',
+        'serie',
         'total_value',
+        'cfop',
         'tax',
+        'namecompany',
+        'cpf_cnpj',
+        'ie',
+        'cod_produto',
+        'unitary_value',
+        'qtd',
         'user_create_id',
     ];    
 }

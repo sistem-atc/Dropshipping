@@ -1,26 +1,14 @@
 (function ($) {
-    remove = function (item) {
-        var tr = $(item).closest('tr');
-
-        tr.fadeOut(400, function () {
-            tr.remove();
-        });
-
-        return false;
-    }
-})(jQuery);
-
-(function ($) {
     AddTableRow = function () {
 
         var newRow = $("<tr>");
         var cols = "";
 
-        cols += '<td scope="row"><input type="text" class="col-sm-10">&nbsp;</input></td>';
-        cols += '<th class="col-sm-4">&nbsp;</th>';
-        cols += '<td><input type="text" class="col-sm-10">&nbsp;</td>';
-        cols += '<td><input type="text" class="col-sm-10">&nbsp;</td>';
-        cols += '<th class="col-sm-3"></th>';
+        cols += '<th scope="row"><input type="number" id= "cod_produto" name="cod_produto" class="form-control col-sm-10"></input></th>';
+        cols += '<th class="col-sm-4" id="name_produto" type="text" name="name_produto" class="form-control"></th>';
+        cols += '<th><input type="text" id="unitary_value" name="unitary_value" class="form-control total_value" required></th>';
+        cols += '<th><input type="number" id="qtd" name="qtd" type="number" class="form-control col-sm-10" required></th>';
+        cols += '<th class="col-sm-3" id="subtotal" name= "subtotal"class="form-control"></th>';
         cols += '<th><button class="btn btn-primary" type="button" onclick="remove(this)">Remover</button></th>';
 
         newRow.append(cols);

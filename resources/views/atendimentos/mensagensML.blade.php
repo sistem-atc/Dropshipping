@@ -6,73 +6,113 @@
             <div class="card">
                 <div class="card-header row justify-content-center">Entrada de Notas de Compras</div><br/>
 					@csrf	
-					<div class = "row justify-content-center">
-						<div class="col-sm-3">
-							<div >
-							<label for="lbl-nf">Numero da NF</label>
-							<input id="nf" type="number" class="form-control @error('nf') is-invalid @enderror" name="nf" value="{{ old('nf') }}" required placeholder="Informe o numero da NF" autofocus/>
-								@error('name')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-								@enderror
-							</div>
-						</div>	
-						<div class="col-sm-3">
-							<div >
-							<label for="lbl-total_value">Valor Total</label>
-							<input id="total_value" type="number" class="form-control @error('total_value') is-invalid @enderror" name="total_value" min="1" step="any" required placeholder="Inserir Valor Total"/>
-								@error('total_value')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-								@enderror
-							</div>
-						</div>	
-                        <div class="col-sm-3">
-							<div class="form-group">
-							<label for="lbl-tax">Impostos</label>
-							<input id="tax" type="number" class="form-control @error('tax') is-invalid @enderror" name="tax" value="{{ old('tax') }}" min="1" step="any" required placeholder="Informe os Impostos"/>
-								@error('tax')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-								@enderror
-							</div>
+					<?php
+					require 'lib/Meli/meli.php';
+					$meli = new Meli($appId, $secretKey);
+					$response = $meli->get('/users/me', array('access_token' => $_SESSION['access_token']));
+
+					$id_conta = $response['body']->id;
+
+					$url = 'questions/search';
+					$response = "";
+					$params = [
+						'seller_id' => $id_conta,
+						'status' => 'UNANSWERED',
+						'access_token' => $_SESSION['access_token'],
+					];
+					$response = $meli->get($url, $params);
+
+					//Abaixo pegamos a lista de perguntas da nossa conta
+					$qtd_perguntas = $response['body']->total;
+					$perguntas = $response['body']->questions;
+
+					//print_r($perguntas);
+
+					?>
+					<div class="container" style="padding-top: 20px;">
+						<div class="row">
+							<?php if (is_int($qtd_perguntas) && $qtd_perguntas > 0 && !empty($perguntas)): ?>
+								<?php foreach ($perguntas as $pergunta): ?>
+									<?php
+										$product_url = "";
+										$url = '/items/' . $pergunta->item_id;
+										$anuncio = "";
+										$anuncio = $meli->get($url, array('access_token' => $_SESSION['access_token']));
+										$product_url = $anuncio['body']->permalink;
+									?>
+									<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+										<div class="card" style="margin-top: 10px;">
+											<h5 class="card-header">ID Pergunta: <?php echo $pergunta->id ?></h5>
+
+											<div class="card-body">
+												<h5 class="card-title">Produto:
+													<a href="<?php echo $product_url ?>" target="_blank"><?php echo $pergunta->item_id ?></a>
+												</h5>
+												<p class="card-text"><?php echo $pergunta->text ?></p>
+												<p class="card-text"><textarea id="question-<?php echo $pergunta->id ?>"
+																			style="width: 100%"></textarea></p>
+												<button class="btn btn-primary" onclick="sendAnswer(<?php echo $pergunta->id ?>)">
+													Responder
+												</button>
+											</div>
+										</div>
+									</div>
+
+								<?php endforeach; ?>
+							<?php else: ?>
+								<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+									<div class="card" style="text-align: center;">
+										<div class="card-body">
+											<h5 class="card-title">Nenhuma pergunta para listar!</h5>
+											<div style="padding: 10px;">
+											</div>
+										</div>
+									</div>
+								</div>
+							<?php endif; ?>
 						</div>
-                    </div><br/>
-                    <!-- Incluir uma Tabela para inserir varios produtos -->
-                    <!-- Comparar o total inserido pela quantidade X o valor e validar no valor total informado -->
-            </div>
-        </div>
-        <div class="col-md-11">
-            <div class = "row justify-content-center">
-			    <div class="form-group">
-					<button class="btn  btn-primary" type="submit">Salvar</button>
-				    <a class="btn btn-primary">Consultar</a>
-					<a class="btn btn-primary aw-btn-link-danger" onclick="excluir()">Excluir Cadastro?</a>
-				</div>
+					</div>
+					<?php
+					require_once 'js.php';
+					?>
 					<script>
-						function excluir() {
-				    		swal({
-								title: "Tem certeza?",
-								text: "Você não poderá recuperar o cadastro após a exclusão.",
-								type: "warning",
-								showCancelButton: true,
-								confirmButtonColor: "#DD6B55",
-								confirmButtonText: "Sim, exclua agora!",
-								closeOnConfirm: false,
-								showLoaderOnConfirm: true
-							}, function() {
-								setTimeout(function() {
-									swal("Excluído!", "O cadastro foi excluído com sucesso.", "success");
-								}, 2000);
-						});
-					}
-				</script>
+						function sendAnswer(question_id) {
+							var answer_text = $("#question-" + question_id).val();
+							var url = "functions.php";
+							$.ajax({
+								method: "POST",
+								url: url,
+								async: false,
+								cache: false,
+								data: {
+									"action": "sendanswer",
+									"question_id": question_id,
+									"text": answer_text
+								},
+								success: function (data) {
+									if (data.indexOf("Erro") > -1) {
+										console.log(data);
+										alert("Erro ao enviar resposta: Verifique os detalhes do erro no console do navegador em modo desenvolvedor(F12)");
+									} else {
+										console.log(data);
+										alert("Resposta enviado com sucesso");
+										location.reload();
+									}
+								},
+								error: function (data) {
+									alert("Erro, verifique os detalhes no console do navegador em modo desenvolvedor(F12)");
+									console.log(data);
+									return false;
+								}
+							});
+						}
+					</script>
+					<?php
+					require_once 'footer.php';
+					?>
+				</div>
 			</div>
-        </div>        
+		</div>			
     </form>               
 </div>
-
 @endsection

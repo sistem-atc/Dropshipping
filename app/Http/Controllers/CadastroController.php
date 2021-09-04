@@ -8,7 +8,9 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Company;
 use App\Models\Key;
-use App\Models\Seller;
+use App\Models\Product;
+use App\Models\Imagem;
+use Illuminate\Support\Facades\Auth;
 
 class CadastroController extends Controller
 {
@@ -44,34 +46,88 @@ class CadastroController extends Controller
         return view('cadastros.cadastroP');
     }
 
+    public function storeP(Request $request){
+        $input=$request->all();
+        $images=array();
+        
+        if($files=$request->file('images')){
+            foreach($files as $file){
+                $name = uniqid(date('HisYmd'));
+                $extension = $file->extension();
+                $nameFile = "{$name}.{$extension}";
+                $images[]=$nameFile;
+                $upload = $file->storeAs('img_products', $nameFile);
+                    if ( !$upload )
+                        return redirect()
+                            ->back()
+                            ->with('error', 'Falha ao fazer upload')
+                            ->withInput();
+            }
+        }                
+        Product::create([
+            
+            'name' => $request->name,
+            'profit_margin' => $request->profit_margin,
+            'length' => $request->length,
+            'width' => $request->width,
+            'height' => $request->height,
+            'weight' => $request->weight,
+            'category' => $request->category,
+            'address_inventory' => $request->adress_inventory,
+            'description' => $request->description,
+            'model' => $request->model,
+            'material' => $request->material,
+            'user_create_id' => auth()->user()->id,
+        ]);
+
+        $PesquisaProducts = Product::all();
+        foreach ($PesquisaProducts as $PesquisaProduct){
+            if ($PesquisaProduct->name = $request->name){
+                $ProdutID = $PesquisaProduct->id;
+            };
+        };
+
+        foreach ($images as $image){
+            Imagem::create([
+                'idproduct' => $ProdutID,
+                'images' => $image,
+            ]);
+        };
+
+        return redirect('/cadastroProdutos');
+    } 
+
     public function cadastroS()    {
         return view('cadastros.cadastroS');
     }
     
     public function storeS(Request $request){
-        Seller::create([
+        User::create([
+            'company' => auth()->user()->company,
             'name' =>  $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
-            'cpfcnpj' => $request->cpfcnpj,
+            'cpf' => $request->cpf_cnpj,
             'cep' => $request->cep,
             'address' => $request->address,
             'number' => $request->number,
             'city' => $request->city,
             'uf' => $request->uf,
             'ative' => $request->ative,
+            'user_create_id' => auth()->user()->id,
+            'paper' => 2,
         ]);
 
-        $PesquisaSellers = Role::all();
-        foreach ($PesquisaSellers as $PesquisaSeller){
-            if ($PesquisaSeller->email = $request->email){
-                $SellerID = $PesquisaSeller->id;
+        $LocalizarUsers = User::all();
+        foreach ($LocalizarUsers as $LocalizarUser){
+            if ($LocalizarUser->email = $request->email){
+                $UserID = $LocalizarUser->id;
             };
         };
-
+        
         Key::create([
-            'id_seller' => $SellerID,
+            'id_user' => $UserID,
             'name_dp' => $request->name_dp,
             'appid' => $request->appid,
             'secretkey' => $request->secretkey,
@@ -85,8 +141,7 @@ class CadastroController extends Controller
         Role::create([
 
         'name' => $request->name,
-        'menus' => $request->menus,
-        'home' => $request->home,
+        'register' => $request->register,
         'anuncios' => $request->anuncios,
         'mensagensML' => $request->mensagensML,
         'mensagensSellers' => $request->mensagensSellers,

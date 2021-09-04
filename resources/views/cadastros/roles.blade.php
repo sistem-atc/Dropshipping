@@ -20,8 +20,8 @@
 						</div>
                         <div class="col-sm-2">
 							<div>
-                                <label for="lbl-anuncios">Anuncios</label>
-                                <select id="anuncios" name="anuncios" class="form-control" value="{{ old('anuncios') }}" required autocomplete="ative">
+                                <label for="lbl-estoque">Cadastra Empresas</label>
+                                <select id="register" name="register" class="form-control" value="{{ old('register') }}" required autocomplete="ative">
                                     <option value="true" selected>Sim</option>
                                     <option value="false">Não</option>
                                 </select>
@@ -107,6 +107,15 @@
 							<div>
                                 <label for="lbl-cadastroS">Cadastro Sellers</label>
                                 <select id="cadastroS" name="cadastroS" class="form-control" value="{{ old('cadastroS') }}" required autocomplete="ative">
+                                    <option value="true" selected>Sim</option>
+                                    <option value="false">Não</option>
+                                </select>
+							</div>
+						</div>
+                        <div class="col-sm-2">
+							<div>
+                                <label for="lbl-anuncios">Anuncios</label>
+                                <select id="anuncios" name="anuncios" class="form-control" value="{{ old('anuncios') }}" required autocomplete="ative">
                                     <option value="true" selected>Sim</option>
                                     <option value="false">Não</option>
                                 </select>
