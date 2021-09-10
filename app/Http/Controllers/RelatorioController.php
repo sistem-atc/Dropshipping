@@ -1,0 +1,13 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class RelatorioController extends Controller
+{
+        public function relatovendas()
+    {
+        return view('relatorios.relatov');
+    }
+}
