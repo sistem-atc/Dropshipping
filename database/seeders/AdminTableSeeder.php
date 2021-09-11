@@ -27,7 +27,6 @@ class AdminTableSeeder extends Seeder
             'uf' => 'SF',
             'ative' => 'true',
             'paper' => '1',
-<<<<<<< HEAD
             'profile_photo_path' => 'admin.jpg',
             'created_at' => '09/09/2021 20:50:00',
             'updated_at' => '09/09/2021 20:50:00',
@@ -88,8 +87,6 @@ class AdminTableSeeder extends Seeder
             'profile_photo_path' => 'admin.jpg',
             'created_at' => '09/09/2021 20:50:00',
             'updated_at' => '09/09/2021 20:50:00',
-=======
->>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
         ]);
     }
 }

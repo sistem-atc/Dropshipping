@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Imagem extends Model
 {
     use HasFactory;
-<<<<<<< HEAD
     protected $table = 'imagems';
     protected $fillable = [
     'idproduct',
@@ -19,10 +18,4 @@ class Imagem extends Model
     {
         return $this->hasOne(Company::class, 'id','products');
     }
-=======
-    protected $fillable = [
-    'idproduct',
-    'images',
-    ];    
->>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 }

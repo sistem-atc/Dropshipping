@@ -23,11 +23,7 @@ class CompanyController extends Controller
             'secretkey' => $request->secretkey,
         ]);
 	
-<<<<<<< HEAD
         return redirect()->route('home');
-=======
-        return redirect('/');
->>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
     }
     
     public function register()

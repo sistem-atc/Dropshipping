@@ -120,31 +120,6 @@
 
 <script>$(document).ready(function(){$('.cep').mask('00000-000')});</script>
 <script>$(document).ready(function(){$('.uf').mask('AA')});</script>
-<<<<<<< HEAD
 <script>var SPMaskBehavior = function (val) {return val.replace(/\D/g, '').length === 11 ? '(00) 0 0000-0000' : '(00) 0000-00009';},spOptions = {onKeyPress: function(val, e, field, options) {field.mask(SPMaskBehavior.apply({}, arguments), options);}};$('.phone').mask(SPMaskBehavior, spOptions);</script>
 <script>jQuery(document).ready(function ($) {var CpfCnpjMaskBehavior = function (val) {return val.replace(/\D/g, '').length <= 11 ? '000.000.000-009' : '00.000.000/0000-00';},cpfCnpjpOptions = {onKeyPress: function (val, e, field, options) {field.mask(CpfCnpjMaskBehavior.apply({}, arguments), options);}};$('.cpf_cnpj').mask(CpfCnpjMaskBehavior, cpfCnpjpOptions);});</script>
-=======
-<script>
-	var SPMaskBehavior = function (val) {
-	return val.replace(/\D/g, '').length === 11 ? '(00) 0 0000-0000' : '(00) 0000-00009';
-	},
-	spOptions = {
-	onKeyPress: function(val, e, field, options) {
-	field.mask(SPMaskBehavior.apply({}, arguments), options);
-	}
-	};
-	$('.phone').mask(SPMaskBehavior, spOptions);
-	jQuery(document).ready(function ($) {
-    var CpfCnpjMaskBehavior = function (val) {
-        return val.replace(/\D/g, '').length <= 11 ? '000.000.000-009' : '00.000.000/0000-00';
-    },
-        cpfCnpjpOptions = {
-            onKeyPress: function (val, e, field, options) {
-                field.mask(CpfCnpjMaskBehavior.apply({}, arguments), options);
-            }
-        };
-    $('.cpf_cnpj').mask(CpfCnpjMaskBehavior, cpfCnpjpOptions);
-});
-</script>
->>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 @endsection

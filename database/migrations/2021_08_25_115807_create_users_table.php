@@ -16,10 +16,6 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('company');
-<<<<<<< HEAD
-=======
-            $table->foreign('company')->references('id')->on('companies');
->>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -34,18 +30,12 @@ class CreateUsersTable extends Migration
             $table->string('uf');
             $table->boolean('ative');
             $table->integer('paper');
-<<<<<<< HEAD
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
 
             $table->foreign('company')->references('id')->on('companies');
             $table->foreign('paper')->references('id')->on('roles');
-=======
-            $table->foreign('paper')->references('id')->on('roles');
             $table->timestamps();
-
-            
->>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 
         });
     }

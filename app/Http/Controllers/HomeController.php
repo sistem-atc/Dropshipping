@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Company;
-<<<<<<< HEAD
 use App\Models\Token;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -15,10 +14,6 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Log;
-=======
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
->>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 
 class HomeController extends Controller
 {
@@ -37,23 +32,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-<<<<<<< HEAD
     public function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('home');
-=======
-    public function logout()
-    {
-        return view('home');
->>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
     }
 
     public function index()
     {   
-<<<<<<< HEAD
 
         $userlogged = User::where('id', Auth::user()->id)->first();
         $companydata = $userlogged->company()->first();
@@ -124,26 +112,6 @@ class HomeController extends Controller
     }
 
     public function menus()
-    {   
-        return view('menus');
-    }
-    
-=======
-        $roles = Role::all();
-        $usercompany = Auth::user()->company;
-        $empresas = Company::all();
-            foreach($empresas as $empresa)
-            {
-                if ($usercompany = $empresa->id)
-                {
-                    $appId = $empresa->appid;
-                    $secretKey = $empresa->secretkey;
-                }
-            }  
-        return view('home',  ['roles' => $roles ,'appId' => $appId , 'secretKey' => $secretKey]);
-    }
-
-    public function menus()
     {
         $usercompany = Auth::user()->company;
         $empresas = Company::all();
@@ -155,5 +123,4 @@ class HomeController extends Controller
         }
         return view('menus',['appId' => $appId , 'secretKey' => $secretKey]);
     }
->>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 }

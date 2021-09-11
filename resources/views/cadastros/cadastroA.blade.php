@@ -3,13 +3,8 @@
 	<div class="row justify-content-center">
         <div class="col-md-11">
             <div class="card">
-<<<<<<< HEAD
                 <div class="card-header row justify-content-center">Cadastro Usuários</div><br/>
 				<form action="{{ route('cadastraAdmin') }}" enctype="multipart/form-data" method="POST">
-=======
-                <div class="card-header row justify-content-center">Cadastros Administradores</div><br/>
-				<form action="{{ route('cadastraAdmin') }}" method="POST">
->>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 					@csrf	
 					<div class="row justify-content-center">
 						<div class="col-sm-6">
@@ -28,11 +23,7 @@
 							<label for="lbl-company">Empresa</label>
 							<select id="company" name="company" class="form-control" required autocomplete="company" placeholder="Selecione a Empresa">
 								@foreach ($empresas as $empresa)
-<<<<<<< HEAD
 									@if (Auth::user()->paper == 1)
-=======
-									@if (Auth::user()->id === 1)
->>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 										<option value='{{ $empresa->id }}' selected>{{ $empresa->name}}</option>
 									@else
 										@if ($empresa->id > 1)	
@@ -48,19 +39,12 @@
 							<label for="lbl-paper">Tipo</label>
 							<select id="paper" name="paper" class="form-control" required autocomplete="paper" placeholder="Tipo">
 								@foreach ($roles as $role)
-<<<<<<< HEAD
 									@if (Auth::user()->paper == 1)
 										@if ($role->id !=2)	
 											<option value="{{ $role->id}}" selected>{{ $role->name}}</option>
 										@endif	
 									@else
 										@if ($role->id >= 2)
-=======
-									@if (Auth::user()->id === 1)
-										<option value="{{ $role->id}}" selected>{{ $role->name}}</option>
-									@else
-										@if ($role->id > 2)
->>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 											<option value="{{ $role->id}}" selected>{{ $role->name}}</option>
 										@endif
 									@endif
@@ -178,7 +162,6 @@
 							</div>
 						</div>
 					</div><br/>
-<<<<<<< HEAD
 					<div class = "row justify-content-center">
 						<div class="col-sm-6">
 							<div class="input-group mb-3">
@@ -190,19 +173,12 @@
 								</button>
 							</div>
 						</div>
-=======
-					<div class="row justify-content-center">
->>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 						<div class="form-group">
 							<button class="btn btn-primary" type="submit">Salvar</button>
 							<a class="btn btn-secondary" onclick="">Consultar</a>
 							<a class="btn btn-danger aw-btn-link-danger" onclick="">Excluir Cadastro?</a>
 						</div>
-<<<<<<< HEAD
 					</div></br>
-=======
-					</div>
->>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 				</form>
             </div>
         </div>
@@ -211,20 +187,6 @@
 <script>$(document).ready(function(){$('.cep').mask('00000-000')});</script>
 <script>$(document).ready(function(){$('.cpf').mask('000.000.000-00')});</script>
 <script>$(document).ready(function(){$('.uf').mask('AA')});</script>
-<<<<<<< HEAD
 <script>var SPMaskBehavior = function (val) {return val.replace(/\D/g, '').length === 11 ? '(00) 0 0000-0000' : '(00) 0000-00009';},spOptions = {onKeyPress: function(val, e, field, options) {field.mask(SPMaskBehavior.apply({}, arguments), options);}};$('.phone').mask(SPMaskBehavior, spOptions);</script>
-=======
-<script>
-	var SPMaskBehavior = function (val) {
-	return val.replace(/\D/g, '').length === 11 ? '(00) 0 0000-0000' : '(00) 0000-00009';
-	},
-	spOptions = {
-	onKeyPress: function(val, e, field, options) {
-	field.mask(SPMaskBehavior.apply({}, arguments), options);
-	}
-	};
-	$('.phone').mask(SPMaskBehavior, spOptions);
-</script>
->>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 
 @endsection

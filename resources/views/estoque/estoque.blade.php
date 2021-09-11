@@ -84,19 +84,11 @@
 								</thead>
 								<tbody>
 									<tr>
-<<<<<<< HEAD
 										<th scope="row"><input type="text" id= "cod_produto" name="cod_produto" class="form-control col-sm-10"></input></th>
 										<th class="col-sm-4" id="name_produto" type="text" name="name_produto" class="form-control"></th>
 										<th><input type="text" id="unitary_value" name="unitary_value" class="form-control total_value" required></th>
 										<th><input type="number" id="qtd" name="qtd" type="number" class="form-control col-sm-10" required></th>
 										<th class="col-sm-3" id="subtotal" name= "subtotal"class="form-control" OnClick="calcular(form)" value=total.value></th>
-=======
-										<th scope="row"><input type="number" id= "cod_produto" name="cod_produto" class="form-control col-sm-10"></input></th>
-										<th class="col-sm-4" id="name_produto" type="text" name="name_produto" class="form-control"></th>
-										<th><input type="text" id="unitary_value" name="unitary_value" class="form-control total_value" required></th>
-										<th><input type="number" id="qtd" name="qtd" type="number" class="form-control col-sm-10" required></th>
-										<th class="col-sm-3" id="subtotal" name= "subtotal"class="form-control"></th>
->>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 										<th><button class="btn btn-primary" type="button" onclick="remove(this)">Remover</button></th>
 									</tr>
 								</tbody>
@@ -126,7 +118,6 @@
 </div>
 
 <script>$('.tax').mask('Z#9V##',{translation:{'Z':{pattern: /[\-\+]/,optional:true},'V':{pattern: /[\,]/},'#':{pattern: /[0-9]/,optional: true}}});</script>
-<<<<<<< HEAD
 <script>$('.tax').on('blur',function(){if($(this).val().length > 0)$(this).val( $(this).val() + '%' );}).on('focus',function(){$(this).val($(this).val().replace('%',''));});</script>
 <script>$('.total_value').mask("#.##0.00", {reverse: true});</script>
 <script>$('.unitary_value').mask("#.##0.00", {reverse: true});</script>
@@ -139,35 +130,4 @@
 	    total.value = parseFloat(num1 + num2).toFixed(2);
 })</script>
 
-=======
-<script>$(".tax").on('blur',function(){if($(this).val().length > 0)$(this).val( $(this).val() + '%' );}).on('focus',function(){$(this).val($(this).val().replace('%',''));});</script>
-<script>$('.total_value').mask("#.##0.00", {reverse: true});</script>
-<script>$('.unitary_value').mask("#.##0.00", {reverse: true});</script>
-<script>
-	jQuery(document).ready(function ($) {
-    var CpfCnpjMaskBehavior = function (val) {
-        return val.replace(/\D/g, '').length <= 11 ? '000.000.000-009' : '00.000.000/0000-00';
-    },
-        cpfCnpjpOptions = {
-            onKeyPress: function (val, e, field, options) {
-                field.mask(CpfCnpjMaskBehavior.apply({}, arguments), options);
-            }
-        };
-    $('.cpf_cnpj').mask(CpfCnpjMaskBehavior, cpfCnpjpOptions);
-	});
-</script>
-<script>
-	(function ($) {
-    remove = function (item) {
-        var tr = $(item).closest('tr');
-
-        tr.fadeOut(400, function () {
-            tr.remove();
-        });
-
-        return false;
-    }
-	})(jQuery);
-</script>
->>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 @endsection
