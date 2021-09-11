@@ -3,28 +3,53 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Company;
 use App\Models\Token;
 use App\Models\User;
 
+=======
+use Illuminate\Support\Facades\Auth;
+use App\Models\Company;
+use App\Models\Token;
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 
 class MeliController extends Controller
 {
 
     protected static $OAUTH_URL    = "/oauth/token";
+<<<<<<< HEAD
     protected static $MLB = "https://auth.mercadolivre.com.br";
     protected static $API_ROOT_URL = "https://api.mercadolibre.com";
     protected static $OAUTH_URL_TEST = "/users/test_user";
+=======
+    protected static $MLB = 'https://auth.mercadolivre.com.br';
+    protected static $API_ROOT_URL = "https://api.mercadolibre.com";
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 
     public function preparetologin()
     {   
         
+<<<<<<< HEAD
         $usercompany = User::where('id', Auth::user()->id)->first();
         $companydata = $usercompany->company()->first();
         $appId = $companydata->appid;
                 
+=======
+        $usercompany = Auth::user()->company;
+        $empresas = Company::all();
+            foreach($empresas as $empresa)
+            {
+                if ($usercompany = $empresa->id)
+                {
+                    $appId = $empresa->appid;
+                    $secretKey = $empresa->secretkey;
+                }
+            } 
+        
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
         $params = array("client_id" => $appId, "response_type" => "code", "redirect_uri" => env('REDIRECT_URI'));    
         $query = http_build_query($params);
         return redirect(self::$MLB."/authorization?".http_build_query($params));
@@ -32,12 +57,26 @@ class MeliController extends Controller
 
     public function callback (Request $request){
 
+<<<<<<< HEAD
         $usercompany = User::where('id', Auth::user()->id)->first();
         $companydata = $usercompany->company()->first();
         $appId = $companydata->appid;
         $secretKey = $companydata->secretkey;
         Session::put(['appId' => $appId, 'secretKey' => $secretKey,]);
         
+=======
+        $usercompany = Auth::user()->company;
+        $empresas = Company::all();
+            foreach($empresas as $empresa)
+            {
+                if ($usercompany = $empresa->id)
+                {
+                    $appId = $empresa->appid;
+                    $secretKey = $empresa->secretkey;
+                }
+            } 
+
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
         $body = array(
             "grant_type" => "authorization_code", 
             "client_id" => $appId, 
@@ -53,7 +92,10 @@ class MeliController extends Controller
         
         $request = $this->execute(self::$OAUTH_URL, $opts);
         Token::create([
+<<<<<<< HEAD
             'recording_user' => Auth::user()->id,
+=======
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
             'company' => Auth::user()->company,
             'access_token' => $request['body']->access_token,
             'expires_in' => $request['body']->expires_in,
@@ -61,6 +103,7 @@ class MeliController extends Controller
             'refresh_token' => $request['body']->refresh_token,
         ]);
         
+<<<<<<< HEAD
         $this->session($request);
         
         return redirect()->route('home');
@@ -122,6 +165,12 @@ class MeliController extends Controller
         $request = $this->execute(self::$API_ROOT_URL, $opts);
     }
 
+=======
+        return redirect('/');
+
+    }
+            
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
     public function execute($path, $opts = array(), $params = array(), $assoc = false) {
         $uri = $this->make_path($path, $params);
 
@@ -166,6 +215,7 @@ class MeliController extends Controller
         CURLOPT_RETURNTRANSFER => 1, 
         CURLOPT_TIMEOUT => 60
     );
+<<<<<<< HEAD
 
     public function session($request){
 
@@ -176,4 +226,6 @@ class MeliController extends Controller
         return Session::all();
 
     }
+=======
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 }

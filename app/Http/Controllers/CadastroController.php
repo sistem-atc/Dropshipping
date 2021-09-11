@@ -16,6 +16,7 @@ class CadastroController extends Controller
 {
     public function storeA(Request $request){
         
+<<<<<<< HEAD
         $images=array();
         if($files=$request->file('images')){
             foreach($files as $file){
@@ -34,6 +35,10 @@ class CadastroController extends Controller
 
         User::create([
 
+=======
+        User::create([
+            
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
             'company' => $request->company,
             'name' => $request->name,
             'email' => $request->email,
@@ -47,10 +52,16 @@ class CadastroController extends Controller
             'uf' => $request->uf,
             'ative' => $request->ative,
             'paper' => $request->paper,
+<<<<<<< HEAD
             'profile_photo_path' => $nameFile,
         ]);
 
         return redirect()->route('cadastroA');
+=======
+        ]);
+
+        return redirect('/cadastroAdministradores');
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
     } 
     
     public function cadastroA(){   
@@ -111,7 +122,11 @@ class CadastroController extends Controller
             ]);
         };
 
+<<<<<<< HEAD
         return redirect()->route('cadastroP');
+=======
+        return redirect('/cadastroProdutos');
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
     } 
 
     public function cadastroS()    {
@@ -150,7 +165,11 @@ class CadastroController extends Controller
             'secretkey' => $request->secretkey,
         ]);
 
+<<<<<<< HEAD
         return redirect()->route('cadastroS');
+=======
+        return redirect('/cadastroSellers');
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
     }
 
     public function storeR(Request $request){
@@ -171,12 +190,20 @@ class CadastroController extends Controller
         'roles' => $request->roles,
         ]);
 
+<<<<<<< HEAD
         return redirect()->route('roles');
+=======
+        return redirect('/roles');
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
     } 
 
     public function roles(){   
         $roles = Role::all();
         return view('cadastros.roles',['roles' => $roles]);
+<<<<<<< HEAD
     }
 
+=======
+    }    
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 }

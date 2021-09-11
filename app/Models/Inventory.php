@@ -4,12 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+<<<<<<< HEAD
 use App\Models\Product;
+=======
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 
 class Inventory extends Model
 {
     use HasFactory;
+<<<<<<< HEAD
     protected $table = 'inventories';
+=======
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
     protected $fillable = [
         'nf',
         'serie',
@@ -24,6 +30,7 @@ class Inventory extends Model
         'qtd',
         'user_create_id',
     ];    
+<<<<<<< HEAD
 
     public function cod_produto()
     {
@@ -34,4 +41,6 @@ class Inventory extends Model
     {
         return $this->hasOne(Company::class, 'id','users');
     }
+=======
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 }

@@ -27,10 +27,15 @@ class CreateProductsTable extends Migration
             $table->string('model');
             $table->string('material');
             $table->integer('user_create_id');
+<<<<<<< HEAD
             $table->timestamps();
 
             $table->foreign('user_create_id')->references('id')->on('users');            
 
+=======
+            $table->foreign('user_create_id')->references('id')->on('users');
+            $table->timestamps();
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
         });
     }
 

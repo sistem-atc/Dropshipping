@@ -25,8 +25,11 @@ use App\Http\Controllers\MeliController;
 Auth::routes();
 
 Route::get('/anuncios', [AnunciosController::class, 'store'])->name('anuncios');
+<<<<<<< HEAD
 Route::post('/anuncios', [AnunciosController::class, 'publicarML'])->name('envio.anuncios');
 
+=======
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 Route::get('/mensagensSellers', [AtedimentoController::class, 'atendimentosSellers'])->name('atendimentosSellers');
 Route::get('/mensagensMercadoLivre', [AtedimentoController::class, 'atendimentosML'])->name('atendimentosML');
 
@@ -56,5 +59,9 @@ Route::get('/pedidos', [PedidosController::class, 'pedidos'])->name('pedidos');
 Route::get('/relatorioVendas', [RelatorioController::class, 'relatovendas'])->name('relatoriovendas');
 
 Route::get('/prepare-to-login',[MeliController::class, 'preparetologin'])->name('prepare.login');
+<<<<<<< HEAD
 Route::get('/callback', [MeliController::class, 'callback'])->name('callback');
 Route::get('/refresh-token',[MeliController::class, 'refreshAccessToken'])->name('refresh.token');
+=======
+Route::get('/callback', [MeliController::class, 'callback'])->name('callback');
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d

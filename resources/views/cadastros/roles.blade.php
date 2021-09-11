@@ -18,7 +18,10 @@
 								@enderror
 							</div>
 						</div>
+<<<<<<< HEAD
                         @if (Auth::user()->paper === 1)
+=======
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
                         <div class="col-sm-2">
 							<div>
                                 <label for="lbl-estoque">Cadastra Empresas</label>
@@ -28,7 +31,10 @@
                                 </select>
 							</div>
 						</div>
+<<<<<<< HEAD
                         @endif
+=======
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
                         <div class="col-sm-2">
 							<div>
                                 <label for="lbl-roles">Criar Regras</label>
@@ -128,8 +134,31 @@
 						<div class="form-group">
 							<button class="btn  btn-primary" type="submit">Salvar</button>
 							<a class="btn btn-secondary">Consultar</a>
+<<<<<<< HEAD
 							<a class="btn btn-danger aw-btn-link-danger" onclick="">Excluir Cadastro?</a>
 						</div>
+=======
+							<a class="btn btn-danger aw-btn-link-danger" onclick="excluir()">Excluir Cadastro?</a>
+						</div>
+						<script>
+							function excluir() {
+								swal({
+										title: "Tem certeza?",
+										text: "Você não poderá recuperar o cadastro após a exclusão.",
+										type: "warning",
+										showCancelButton: true,
+										confirmButtonColor: "#DD6B55",
+										confirmButtonText: "Sim, exclua agora!",
+										closeOnConfirm: false,
+										showLoaderOnConfirm: true
+									}, function() {
+										setTimeout(function() {
+											swal("Excluído!", "O cadastro foi excluído com sucesso.", "success");
+										}, 2000);
+								});
+							}
+						</script>
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 					</div>
                 </form>
                 </div>

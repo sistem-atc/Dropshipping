@@ -1,7 +1,11 @@
 @extends('menus')
 @section('content')
 <div class="row justify-content-center">
+<<<<<<< HEAD
     <form action="{{ route('envio.anuncios') }}" method="POST" class="col-md-11 row justify-content-center">        
+=======
+    <form action="" method="POST" class="col-md-11 row justify-content-center">        
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
         <div class="col-md-11">
             <div class="card">
 				<div class="card-header row justify-content-center">Publicar Anuncios Mercado Livre</div></br>
@@ -14,6 +18,7 @@
 								<th scope="col" class="col-sm-2">Valor Un.</th>
 								<th scope="col" class="col-sm-2">Quant.</th>
 								<th scope="col" class="col-sm-3">Valor Total</th>
+<<<<<<< HEAD
 								<th scope="col">Selecionar</th>
 							</tr>
 						</thead>
@@ -37,6 +42,28 @@
 								</tr>
 							@endforeach
 						</tbody>
+=======
+								<th scope="col">Opções</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="col"></th>
+								<th scope="col"></th>
+								<th scope="col"></th>
+								<th scope="col"></th>
+								<th scope="col"></th>
+								<th><button class="btn btn-primary" type="button" onclick="remove(this)">Detalhes</button></th>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th colspan="5" sytle="text-align: left;">
+									<button onclick="AddTableRow()" class="btn btn-primary" type="button">Adicionar Produto</button>
+								</th>
+							</tr>
+						</tfoot>
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 					</table>
 	            </div>
 	        </div>
@@ -44,8 +71,16 @@
         <div class="col-md-11">
             <div class = "row justify-content-center">
 			    <div class="form-group">
+<<<<<<< HEAD
 					<button class="btn btn-success" type="submit">Enviar</button>
 				</div>
+=======
+					<button class="btn  btn-primary" type="submit">Salvar</button>
+				    <a class="btn btn-primary">Consultar</a>
+					<a class="btn btn-primary aw-btn-link-danger" onclick="">Excluir Cadastro?</a>
+				</div>
+				<script>
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 			</div>
         </div>        
     </form>               

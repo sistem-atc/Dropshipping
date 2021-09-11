@@ -74,6 +74,7 @@
     </div>
     </div>
 
+<<<<<<< HEAD
     <script type="text/javascript" src="{{ url ('assets/js/jQuery.js')}}"></script>
     <script type="text/javascript" src="{{ url ('assets/js/main.js')}}"></script>
     <script type="text/javascript" src="{{ url ('assets/js/jquery-3.2.1.min.js')}}"></script>
@@ -82,5 +83,20 @@
 	<script type="text/javascript" src="{{ url ('assets/js/select2.min.js')}}"></script>
 	<script type="text/javascript" src="{{ url ('assets/js/tilt.jquery.min.js')}}"></script>   
  
+=======
+    <script src="{{ url ('assets/js/main.js')}}"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+	<script src="{{ url ('assets/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
+	<script src="{{ url ('assets/vendor/bootstrap/js/popper.js')}}"></script>
+	<script src="{{ url ('assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+	<script src="{{ url ('assets/vendor/select2/select2.min.js')}}"></script>
+	<script src="{{ url ('assets/vendor/tilt/tilt.jquery.min.js')}}"></script>   
+    <script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+	 
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
 </body>
 </html>

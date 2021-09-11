@@ -76,7 +76,10 @@ class RegisterController extends Controller
             'uf'=> $data['uf'],
             'ative'=> $data['ative'],
             'paper'=> $data['paper'],
+<<<<<<< HEAD
             'profile_photo_path' => $data['profile_photo_path'],
+=======
+>>>>>>> bb1eea3914d7f7682a63d03703dd34362e406f8d
         ]);
     }
 }
