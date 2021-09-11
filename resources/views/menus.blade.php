@@ -48,7 +48,7 @@
                             <li class="scroll-to-section"><a href="/" class="active">Dashboard</a></li>
                             @if (Session::get('AuthML') == 'New')
                               <li class="scroll-to-section"><a href="{{ route('prepare.login') }}" class="active">Autenticar ML</a></li>
-                            @elseif (Session::get('AuthML') == 'Renew'))
+                            @elseif (Session::get('AuthML') == 'Renew')
                               <li class="scroll-to-section"><a href="{{ route('refresh.token') }}" class="active">Renovar ML</a></li>
                             @endif
                           </ul>

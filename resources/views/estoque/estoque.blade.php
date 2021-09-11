@@ -88,7 +88,7 @@
 										<th class="col-sm-4" id="name_produto" type="text" name="name_produto" class="form-control"></th>
 										<th><input type="text" id="unitary_value" name="unitary_value" class="form-control total_value" required></th>
 										<th><input type="number" id="qtd" name="qtd" type="number" class="form-control col-sm-10" required></th>
-										<th class="col-sm-3" id="subtotal" name= "subtotal"class="form-control"></th>
+										<th class="col-sm-3" id="subtotal" name= "subtotal"class="form-control" OnClick="calcular(form)" value=total.value></th>
 										<th><button class="btn btn-primary" type="button" onclick="remove(this)">Remover</button></th>
 									</tr>
 								</tbody>
@@ -123,4 +123,11 @@
 <script>$('.unitary_value').mask("#.##0.00", {reverse: true});</script>
 <script>jQuery(document).ready(function ($) {var CpfCnpjMaskBehavior = function (val) {return val.replace(/\D/g, '').length <= 11 ? '000.000.000-009' : '00.000.000/0000-00';},cpfCnpjpOptions = {onKeyPress: function (val, e, field, options) {field.mask(CpfCnpjMaskBehavior.apply({}, arguments), options);}};$('.cpf_cnpj').mask(CpfCnpjMaskBehavior, cpfCnpjpOptions);});</script>
 <script>(function ($) {remove = function (item) {var tr = $(item).closest('tr');tr.fadeOut(400, function () {tr.remove();});return false;}})(jQuery);</script>
+
+<script>(function calcular(form) {
+	    var num1 = Number(document.getElementById("unitary_value").value);
+	    var num2 = Number(document.getElementById("qtd").value);
+	    total.value = parseFloat(num1 + num2).toFixed(2);
+})</script>
+
 @endsection
