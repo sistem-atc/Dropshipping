@@ -14,13 +14,5 @@ class AtedimentoController extends Controller
         $users = $users = User::where('id','not like',Auth::user()->id)->get();
         return view('atendimentos.mensagensSellers', ['users' => $users]);
     }
-    public function atendimentosML()
-    {
-        $usercompany = User::where('id', Auth::user()->id)->first();
-        $companydata = $usercompany->company()->first();
-        $appId = $companydata->appid;
-        $secretKey = $companydata->secretkey;
-        
-        return view('atendimentos.mensagensML',['appId' => $appId, 'secretKey' => $secretKey]);
-    } 
+
 }

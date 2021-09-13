@@ -10,6 +10,7 @@ class Token extends Model
     use HasFactory;
     protected $table = 'tokens';
     protected $fillable = [
+        'recording_user',
         'company',
         'access_token',
         'expires_in',

@@ -12,11 +12,23 @@ use App\Models\User;
 class MeliController extends Controller
 {
 
-    protected static $OAUTH_URL    = "/oauth/token";
-    protected static $MLB = "https://auth.mercadolivre.com.br";
-    protected static $API_ROOT_URL = "https://api.mercadolibre.com";
+    protected static $OAUTH_URL      = "/oauth/token";
+    protected static $MLB            = "https://auth.mercadolivre.com.br";
+    protected static $API_ROOT_URL   = "https://api.mercadolibre.com";
     protected static $OAUTH_URL_TEST = "/users/test_user";
+    // protected $client_id;
+    // protected $client_secret;
+    // protected $redirect_uri;
+    // protected $access_token;
+    // protected $refresh_token;
 
+    // public function __construct($client_id, $client_secret, $access_token = null, $refresh_token = null) {
+    //     $this->client_id = $client_id;
+    //     $this->client_secret = $client_secret;
+    //     $this->access_token = $access_token;
+    //     $this->refresh_token = $refresh_token;
+    // }
+    
     public function preparetologin()
     {   
         
@@ -71,12 +83,11 @@ class MeliController extends Controller
         $appId = $companydata->appid;
         $secretKey = $companydata->secretkey;
         $refresh_token = Company::find($companydata->id)->token;
-        
             $body = array(
                 "grant_type" => "refresh_token", 
                 "client_id" => $appId, 
                 "client_secret" => $secretKey, 
-                "refresh_token" => $refresh_token
+                "refresh_token" => $refresh_token->first()->refresh_token,
             );
         
             $opts = array(
@@ -98,7 +109,7 @@ class MeliController extends Controller
                 ]);      
                 
                 $this->session($request);
-        
+                
                 return redirect()->route('home');
 
             } else {
@@ -119,6 +130,35 @@ class MeliController extends Controller
         $request = $this->execute(self::$API_ROOT_URL, $opts);
     }
 
+    public function quetions() {
+        $this->me();
+        $params = [
+        'seller_id' => Session::get('MyId'),
+        'status' => 'UNANSWERED',
+        'access_token' => Session::get('AuthML'),
+        ];
+
+        $response = $this->get('questions/search', $params);
+        $qtd_perguntas = $response['body']->total;
+        $perguntas = $response['body']->questions;
+        return view('atendimentos.mensagensML',['qtd_perguntas' => $qtd_perguntas , 'perguntas' => $perguntas]);
+
+    }
+
+    public function me() {
+        $myid = $this->get('/users/me', array('access_token' => Session::get('AuthML')));
+        Session::put('MyId', $myid['body']->id);
+    }
+
+    public function options($path, $params = null) {
+        $opts = array(
+            CURLOPT_CUSTOMREQUEST => "OPTIONS"
+        );
+        
+        $exec = $this->execute($path, $opts, $params);
+
+        return $exec;
+    }
     public function execute($path, $opts = array(), $params = array(), $assoc = false) {
         $uri = $this->make_path($path, $params);
 
@@ -136,6 +176,12 @@ class MeliController extends Controller
         return $return;
     }
     
+    public function get($path, $params = null, $assoc = false) {
+        $exec = $this->execute($path, null, $params, $assoc);
+
+        return $exec;
+    }
+
     public function make_path($path, $params = array()) {
         if (!preg_match("/^\//", $path)) {
             $path = '/' . $path;
@@ -155,6 +201,42 @@ class MeliController extends Controller
 
         return $uri;
     }
+
+    public function delete($path, $params) {
+        $opts = array(
+            CURLOPT_CUSTOMREQUEST => "DELETE"
+        );
+        
+        $exec = $this->execute($path, $opts, $params);
+        
+        return $exec;
+    }
+
+    public function put($path, $body = null, $params = array()) {
+        $body = json_encode($body);
+        $opts = array(
+            CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
+            CURLOPT_CUSTOMREQUEST => "PUT",
+            CURLOPT_POSTFIELDS => $body
+        );
+        
+        $exec = $this->execute($path, $opts, $params);
+
+        return $exec;
+    }
+    
+    public function post($path, $body = null, $params = array()) {
+        $body = json_encode($body);
+        $opts = array(
+            CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
+            CURLOPT_POST => true, 
+            CURLOPT_POSTFIELDS => $body
+        );
+        
+        $exec = $this->execute($path, $opts, $params);
+
+        return $exec;
+    }    
     
     public static $CURL_OPTS = array(
         CURLOPT_USERAGENT => "MELI-PHP-SDK-2.0.0", 
@@ -165,7 +247,7 @@ class MeliController extends Controller
     );
 
     public function session($request){
-
+        Session::forget(['AuthML']);
         Session::put([
             'AuthML', $request['body']->access_token,
         ]);

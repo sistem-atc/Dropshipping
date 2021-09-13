@@ -72,11 +72,11 @@ class HomeController extends Controller
             
             if (count($tokencompany) != 0)
             {   
-                $timeExpiration = strtotime($tokencompany->first()->created_at) + $tokencompany->first()->expires_in;
+                $timeExpiration = strtotime($tokencompany->last()->created_at) + $tokencompany->last()->expires_in;
                 if ($timeExpiration > time())
                 {   
                     Session::put([
-                        'AuthML' => $tokencompany->first()->access_token,
+                        'AuthML' => $tokencompany->last()->access_token,
                         'appId' => $companydata->appid,
                         'secretKey' => $companydata->secretkey,
                     ]);
@@ -113,14 +113,10 @@ class HomeController extends Controller
 
     public function menus()
     {
-        $usercompany = Auth::user()->company;
-        $empresas = Company::all();
-        foreach($empresas as $empresa){
-            if ($usercompany = $empresa->id){
-                $appId = $empresa->appid;
-                $secretKey = $empresa->secretkey;
-            }
-        }
+        $usercompany = User::where('id', Auth::user()->id)->first();
+        $companydata = $usercompany->company()->first();
+        $appId = $companydata->appid;
+        $secretKey = $companydata->secretkey;
         return view('menus',['appId' => $appId , 'secretKey' => $secretKey]);
     }
 }

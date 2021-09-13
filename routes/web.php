@@ -24,38 +24,44 @@ use App\Http\Controllers\MeliController;
 
 Auth::routes();
 
-Route::get('/anuncios', [AnunciosController::class, 'store'])->name('anuncios');
-Route::post('/anuncios', [AnunciosController::class, 'publicarML'])->name('envio.anuncios');
+Route::group(['middleware' => 'auth'], function() {
 
-Route::get('/mensagensSellers', [AtedimentoController::class, 'atendimentosSellers'])->name('atendimentosSellers');
-Route::get('/mensagensMercadoLivre', [AtedimentoController::class, 'atendimentosML'])->name('atendimentosML');
+    Route::get('/anuncios', [AnunciosController::class, 'store'])->middleware(['check.anuncios'])->name('anuncios');
+    Route::post('/anuncios', [AnunciosController::class, 'publicarML'])->middleware(['check.anuncios'])->name('envio.anuncios');
 
-Route::post('/cadastroAdministradores', [CadastroController::class, 'storeA'])->name('cadastraAdmin');
-Route::get('/cadastroAdministradores', [CadastroController::class, 'cadastroA'])->name('cadastroA');
+    Route::get('/mensagensSellers', [AtedimentoController::class, 'atendimentosSellers'])->name('atendimentosSellers');
 
-Route::post('/cadastroSellers', [CadastroController::class, 'storeS'])->name('cadastraSeller');
-Route::get('/cadastroSellers', [CadastroController::class, 'cadastroS'])->name('cadastroS');
+    Route::get('/register', [CompanyController::class, 'register'])->middleware(['check.company'])->name('register');
+    Route::post('/cadastroEmpresas', [CompanyController::class, 'companies'])->middleware(['check.roles'])->name('cadastroEmpresas');
 
-Route::post('/roles', [CadastroController::class, 'storeR'])->name('cadastraRoles');
-Route::get('/roles', [CadastroController::class, 'roles'])->name('roles');
+    Route::get('/mensagensMercadoLivre', [MeliController::class, 'quetions'])->middleware(['check.atendimentoML'])->name('atendimentosML');
 
-Route::post('/cadastroProdutos', [CadastroController::class, 'storeP'])->name('cadastroProd');
-Route::get('/cadastroProdutos', [CadastroController::class, 'cadastroP'])->name('cadastroP');
+    Route::post('/cadastroAdministradores', [CadastroController::class, 'storeA'])->middleware(['check.cadastroA'])->name('cadastraAdmin');
+    Route::get('/cadastroAdministradores', [CadastroController::class, 'cadastroA'])->middleware(['check.cadastroA'])->name('cadastroA');
 
-Route::post('/estoque', [InventoryController::class, 'store'])->name('estoqueCad');
-Route::get('/estoque', [InventoryController::class, 'estoque'])->name('estoque');
+    Route::post('/cadastroSellers', [CadastroController::class, 'storeS'])->middleware(['check.atendimentoSeller'])->name('cadastraSeller');
+    Route::get('/cadastroSellers', [CadastroController::class, 'cadastroS'])->middleware(['check.atendimentoSeller'])->name('cadastroS');
 
-Route::get('/register', [CompanyController::class, 'register'])->name('register');
-Route::post('/cadastroEmpresas', [CompanyController::class, 'companies'])->name('cadastroEmpresas');
+    Route::post('/roles', [CadastroController::class, 'storeR'])->middleware(['check.roles'])->name('cadastraRoles');
+    Route::get('/roles', [CadastroController::class, 'roles'])->middleware(['check.roles'])->name('roles');
 
-Route::get('/menus', [HomeController::class, 'menus'])->name('menus');
+    Route::post('/cadastroProdutos', [CadastroController::class, 'storeP'])->middleware(['check.cadastroP'])->name('cadastroProd');
+    Route::get('/cadastroProdutos', [CadastroController::class, 'cadastroP'])->middleware(['check.cadastroP'])->name('cadastroP');
+
+    Route::post('/estoque', [InventoryController::class, 'store'])->middleware(['check.inventory'])->name('estoqueCad');
+    Route::get('/estoque', [InventoryController::class, 'estoque'])->middleware(['check.inventory'])->name('estoque');
+
+    Route::get('/relatorioVendas', [RelatorioController::class, 'relatovendas'])->middleware(['check.relatoV'])->name('relatoriovendas');
+
+    Route::get('/menus', [HomeController::class, 'menus'])->name('menus');
+
+    Route::get('/pedidos', [PedidosController::class, 'pedidos'])->middleware(['check.pedidos'])->name('pedidos');
+    
+    Route::get('/prepare-to-login',[MeliController::class, 'preparetologin'])->name('prepare.login');
+    Route::get('/callback', [MeliController::class, 'callback'])->name('callback');
+    Route::get('/refresh-token',[MeliController::class, 'refreshAccessToken'])->name('refresh.token');
+    
+});
 
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/pedidos', [PedidosController::class, 'pedidos'])->name('pedidos');
-Route::get('/relatorioVendas', [RelatorioController::class, 'relatovendas'])->name('relatoriovendas');
-
-Route::get('/prepare-to-login',[MeliController::class, 'preparetologin'])->name('prepare.login');
-Route::get('/callback', [MeliController::class, 'callback'])->name('callback');
-Route::get('/refresh-token',[MeliController::class, 'refreshAccessToken'])->name('refresh.token');
-
