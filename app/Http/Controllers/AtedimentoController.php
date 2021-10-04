@@ -15,4 +15,11 @@ class AtedimentoController extends Controller
         return view('atendimentos.mensagensSellers', ['users' => $users]);
     }
 
+    public function mensagensSellers(Request $request)
+    {
+        
+        return redirect()->route('atendimentosSellers');
+
+    }
+
 }

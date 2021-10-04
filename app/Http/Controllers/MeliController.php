@@ -31,7 +31,6 @@ class MeliController extends Controller
     
     public function preparetologin()
     {   
-        
         $usercompany = User::where('id', Auth::user()->id)->first();
         $companydata = $usercompany->company()->first();
         $appId = $companydata->appid;
@@ -130,7 +129,7 @@ class MeliController extends Controller
         $request = $this->execute(self::$API_ROOT_URL, $opts);
     }
 
-    public function quetions() {
+    public function questions() {
         $this->me();
         $params = [
         'seller_id' => Session::get('MyId'),
@@ -139,6 +138,10 @@ class MeliController extends Controller
         ];
 
         $response = $this->get('questions/search', $params);
+            if($response["httpCode"] == 400)
+                return Session::flash('error','Favor renovar o Token do Mercado Livre');
+            elseif ($response["httpCode"] == 403)
+                return Session::flash('error','Favor autenticar o Token do Mercado Livre');    
         $qtd_perguntas = $response['body']->total;
         $perguntas = $response['body']->questions;
         return view('atendimentos.mensagensML',['qtd_perguntas' => $qtd_perguntas , 'perguntas' => $perguntas]);
@@ -147,6 +150,10 @@ class MeliController extends Controller
 
     public function me() {
         $myid = $this->get('/users/me', array('access_token' => Session::get('AuthML')));
+            if ($myid["httpCode"] == 400)
+                return ('Favor autenticar o Token do Mercado Livre');
+            elseif ($myid["httpCode"] == 403)   
+                return ('Usuario sem token');  
         Session::put('MyId', $myid['body']->id);
     }
 

@@ -14,8 +14,8 @@
     <body>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <a class="navbar-brand" href="{{ url('/') }}">Voltar para a tela de login</a>
+                <div class="col-md-11">
+                    </br><a class="row justify-content-center" href="{{ url('/') }}" >Voltar para a tela de login</a></br>
                     <div class="card"></br></br>
                         <div class="row justify-content-center">{{ __('Redefinir a Senha') }}</div></br></br>
 

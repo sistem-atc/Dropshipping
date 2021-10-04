@@ -5,6 +5,12 @@
         <div class="col-md-11">
             <div class="card">
                 <div class="card-header row justify-content-center">Mensagens Mercado Livre</div><br/>
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-danger alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>    
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
                     @if (is_int($qtd_perguntas) && $qtd_perguntas > 0 && !empty($perguntas))
                         @foreach ($perguntas as $pergunta)
                         <?php

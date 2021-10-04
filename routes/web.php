@@ -30,11 +30,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/anuncios', [AnunciosController::class, 'publicarML'])->middleware(['check.anuncios'])->name('envio.anuncios');
 
     Route::get('/mensagensSellers', [AtedimentoController::class, 'atendimentosSellers'])->name('atendimentosSellers');
+    Route::post('/mensagensSellers', [AtedimentoController::class, 'mensagensSellers'])->name('mensagensSellers');
 
     Route::get('/register', [CompanyController::class, 'register'])->middleware(['check.company'])->name('register');
     Route::post('/cadastroEmpresas', [CompanyController::class, 'companies'])->middleware(['check.roles'])->name('cadastroEmpresas');
 
-    Route::get('/mensagensMercadoLivre', [MeliController::class, 'quetions'])->middleware(['check.atendimentoML'])->name('atendimentosML');
+    Route::get('/mensagensMercadoLivre', [MeliController::class, 'questions'])->middleware(['check.atendimentoML'])->name('atendimentosML');
 
     Route::post('/cadastroAdministradores', [CadastroController::class, 'storeA'])->middleware(['check.cadastroA'])->name('cadastraAdmin');
     Route::get('/cadastroAdministradores', [CadastroController::class, 'cadastroA'])->middleware(['check.cadastroA'])->name('cadastroA');

@@ -2,7 +2,7 @@
 @section('content')
 <link rel="stylesheet" type="text/css" href="{{ url ('assets/css/chat.css')}}">
 <div class="row justify-content-center">
-    <form action="" method="POST" class="col-md-11 row justify-content-center">        
+    <form action="{{ route('mensagensSellers') }}" method="POST" class="col-md-11 row justify-content-center">        
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header row justify-content-center">Mensagens Internas</div><br/>
@@ -25,12 +25,12 @@
                                             @foreach ($users as $user)
                                             <li class="person" data-chat="person{{$user->id}}">
                                                 <div class="user">
-                                                    <img src="" alt="">
+                                                    <img src="{{ url ('img_users/'. $user->email .'.jpg')}}" alt="">
                                                     <span class="status busy"></span>
                                                 </div>
                                                 <p class="name-time">
                                                     <span class="name">{{ $user->name }}</span>
-                                                    <span class="time">15/02/2019</span>
+                                                    <!-- <span class="time">15/02/2019</span> -->
                                                 </p>
                                             </li>
                                             @endforeach
@@ -46,25 +46,25 @@
                                             <li class="chat-left">
                                                 <div class="chat-avatar">
                                                     <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
-                                                    <div class="chat-name">Russell</div>
+                                                    <div class="chat-name" id="name_recept">Russell</div>
                                                 </div>
-                                                <div class="chat-text">Hello, I'm Russell.
+                                                <div class="chat-text" id="mensagem_recept">Hello, I'm Russell.
                                                     <br>How can I help you today?</div>
-                                                <div class="chat-hour">08:55<span class="fa fa-check-circle"></span></div>
+                                                <div class="chat-hour" id="hour_recept">08:55<span class="fa fa-check-circle"></span></div>
                                             </li>
                                             <li class="chat-right">
-                                                <div class="chat-hour">08:56<span class="fa fa-check-circle"></span></div>
-                                                <div class="chat-text">Hi, Russell
+                                                <div class="chat-hour" id="hour_sender">08:56<span class="fa fa-check-circle"></span></div>
+                                                <div class="chat-text" id="mensagem_sender">Hi, Russell
                                                     <br> I need more information about Developer Plan.</div>
                                                 <div class="chat-avatar">
-                                                    <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
-                                                    <div class="chat-name">Sam</div>
+                                                    <img src="{{ url ('img_users/'. Auth::user()->email .'.jpg')}}" alt="Retail Admin">
+                                                    <div class="chat-name" id="name_sender">{{Auth::user()->name}}</div>
                                                 </div>
                                             </li>
                                         </ul>
                                         <div class="form-group mt-3 mb-0">
                                             <div class="input-group-append">    
-                                                <textarea class="form-control" rows="1" placeholder="Type your message here..."></textarea>
+                                                <textarea class="form-control" rows="1" placeholder="Escreva sua mensagem aqui..."></textarea>
                                                 <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
                                             </div>
                                         </div>

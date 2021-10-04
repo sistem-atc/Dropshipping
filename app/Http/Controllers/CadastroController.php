@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Auth;
 class CadastroController extends Controller
 {
     public function storeA(Request $request){
-        
         $images=array();
         if($files=$request->file('images')){
             foreach($files as $file){
@@ -23,7 +22,7 @@ class CadastroController extends Controller
                 $extension = $file->extension();
                 $nameFile = "{$name}.{$extension}";
                 $images[]=$nameFile;
-                $upload = $file->storeAs('img_users', $nameFile);
+                $upload = $file->move(public_path('img_users'), $nameFile);
                     if ( !$upload )
                         return redirect()
                             ->back()
@@ -31,7 +30,7 @@ class CadastroController extends Controller
                             ->withInput();
             }
         }  
-
+       
         User::create([
 
             'company' => $request->company,
